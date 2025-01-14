@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   Patch,
   Post,
@@ -14,9 +15,12 @@ import { CreateStudentDto } from './dto/create-student.dto';
 @Controller('students')
 export class StudentsController {
   constructor(private readonly studentService: StudentsService) {}
+  private readonly logger = new Logger(StudentsController.name);
 
   @Post()
   create(@Body() createStudentDto: CreateStudentDto) {
+    this.logger.log('Creating student: ' + JSON.stringify(createStudentDto));
+
     return this.studentService.create(createStudentDto);
   }
 
