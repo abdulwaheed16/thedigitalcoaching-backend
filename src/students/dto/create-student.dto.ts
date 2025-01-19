@@ -2,26 +2,29 @@
 import { IsEmail, IsNotEmpty, IsPhoneNumber } from 'class-validator';
 
 export class CreateStudentDto {
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'First name is required.' })
   firstName: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Last name is required.' })
   lastName: string;
 
-  @IsEmail()
+  @IsEmail({}, { message: 'Email must be a valid email address.' })
   email: string;
 
-  @IsPhoneNumber(null)
+  @IsPhoneNumber(null, { message: 'Phone number must be valid.' })
   phone: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Program is required.' })
   program: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'At least one subject is required.' })
   subjects: string[];
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Exam date is required.' })
   examDate: string;
 
   message?: string;
+
+  otp?: string;
+  otpExpires?: Date;
 }

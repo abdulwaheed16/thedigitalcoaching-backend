@@ -22,4 +22,6 @@ export class UpdateStudentDto {
 
   @IsNotEmpty()
   examDate: string;
+
+  isVerified?: boolean;
 }

@@ -11,6 +11,7 @@ import {
 import { StudentsService } from './students.service';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { CreateStudentDto } from './dto/create-student.dto';
+import { ResendOtpDto, VerifyOtpDto } from './dto/one-time-password.dto';
 
 @Controller('students')
 export class StudentsController {
@@ -22,6 +23,16 @@ export class StudentsController {
     this.logger.log('Creating student: ' + JSON.stringify(createStudentDto));
 
     return this.studentService.create(createStudentDto);
+  }
+
+  @Post('verify-otp')
+  verifyOtp(@Body() verifyOtp: VerifyOtpDto) {
+    return this.studentService.verify(verifyOtp.phone, verifyOtp.otp);
+  }
+
+  @Post('resend-otp')
+  resendOtp(@Body() resendOtpDto: ResendOtpDto) {
+    return this.studentService.resendOtp(resendOtpDto.phone);
   }
 
   @Get(':id')
@@ -42,5 +53,14 @@ export class StudentsController {
   @Delete(':id')
   delete(@Param('id') id: string) {
     return this.studentService.remove(id);
+  }
+
+  // remove all students
+  @Delete()
+  // @HttpCode(HttpStatus.NO_CONTENT)
+  async removeAll(): Promise<{ message: string }> {
+    this.logger.log('Removing all students');
+    await this.studentService.removeAll();
+    return { message: 'Students record deleted' };
   }
 }

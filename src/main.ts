@@ -1,15 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AllExceptionsFilter } from './all-exceptions.filter';
 import * as express from 'express';
+import { CustomValidationPipe } from './common/pipes/custom-validation.pipe';
+import { PrismaExceptionFilter } from './utils/prisma-exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.use(express.json({ limit: '10mb' }));
 
-  app.useGlobalFilters(new AllExceptionsFilter());
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     whitelist: true,
+  //     forbidNonWhitelisted: true,
+  //     transform: true,
+  //   }),
+  // );
+  app.useGlobalPipes(new CustomValidationPipe());
+  app.useGlobalFilters(new PrismaExceptionFilter());
 
   const config = new DocumentBuilder()
     .setTitle('The Digital Coaching')
