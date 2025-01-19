@@ -27,17 +27,18 @@ export class StudentsController {
 
   @Post('verify-otp')
   verifyOtp(@Body() verifyOtp: VerifyOtpDto) {
-    return this.studentService.verify(verifyOtp.phone, verifyOtp.otp);
+    return this.studentService.verify(verifyOtp.email, verifyOtp.otp);
   }
 
   @Post('resend-otp')
   resendOtp(@Body() resendOtpDto: ResendOtpDto) {
-    return this.studentService.resendOtp(resendOtpDto.phone);
+    return this.studentService.resendOtp(resendOtpDto.email);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.studentService.findOne(id);
+    this.logger.log('User ID: ', id);
+    return this.studentService.findUserById(id);
   }
 
   @Get()
