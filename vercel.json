@@ -5,6 +5,8 @@
       "src": "dist/main.js",
       "use": "@vercel/node"
     }
+  ],  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
   ],
   "routes": [
       {
@@ -12,8 +14,6 @@
           "dest": "/dist/main.js",
           "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"]
       }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
   ]
+
 }
