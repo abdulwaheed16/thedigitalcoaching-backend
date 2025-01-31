@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+// import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as express from 'express';
 import { CustomValidationPipe } from './common/pipes/custom-validation.pipe';
 import { PrismaExceptionFilter } from './utils/prisma-exceptions.filter';
@@ -20,14 +20,14 @@ async function bootstrap() {
   app.useGlobalPipes(new CustomValidationPipe());
   app.useGlobalFilters(new PrismaExceptionFilter());
 
-  const config = new DocumentBuilder()
-    .setTitle('The Digital Coaching')
-    .setDescription('Online Teaching Platform')
-    .setVersion('1.0')
-    .addTag('TDC')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  // const config = new DocumentBuilder()
+  //   .setTitle('The Digital Coaching')
+  //   .setDescription('Online Teaching Platform')
+  //   .setVersion('1.0')
+  //   .addTag('TDC')
+  //   .build();
+  // const document = SwaggerModule.createDocument(app, config);
+  // SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.PORT ?? 3000);
 }
