@@ -30,9 +30,19 @@ export class StudentsService {
         throw new BadRequestException('user already exists');
       }
 
-      await this.prisma.student.create({
-        data: { ...createStudentDto, otp, otpExpires },
-      });
+      if (!existingUser) {
+        await this.prisma.student.create({
+          data: { ...createStudentDto, otp, otpExpires },
+        });
+      }
+
+      if (!existingUser?.isVerified) {
+        await this.update(existingUser?.id, {
+          ...existingUser,
+          otp,
+          otpExpires,
+        });
+      }
 
       // send the otp on whatsapp
       const messageId = await sendOtpByEmail(createStudentDto?.email, otp);

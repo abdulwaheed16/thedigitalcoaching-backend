@@ -24,4 +24,7 @@ export class UpdateStudentDto {
   examDate: string;
 
   isVerified?: boolean;
+
+  otp?: string;
+  otpExpires?: Date;
 }
