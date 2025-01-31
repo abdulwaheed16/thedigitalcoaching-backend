@@ -1,12 +1,6 @@
 {
   "version": 2,
 
-  "env": {
-    "DATABASE_URL": "mongodb+srv://abdulwaheed16:J7TVorYf9leNkqYq@cluster0.39ewy.mongodb.net/thedigitalcoaching_v1?retryWrites=true&w=majority",
-
-    "MANAGER_EMAIL": "abwaheed.ahmed@gmail.com",
-    "MANAGER_EMAIL_PASSWORD": "ycyk cefj ifct vulp"
-  },
   "builds": [
     {
       "src": "dist/main.js",
