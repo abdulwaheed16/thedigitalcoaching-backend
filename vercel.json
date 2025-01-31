@@ -1,25 +1,16 @@
 {
   "version": 2,
 
-  "env": {
-    "DATABASE_URL": "mongodb+srv://abdulwaheed16:J7TVorYf9leNkqYq@cluster0.39ewy.mongodb.net/thedigitalcoaching_v1?retryWrites=true&w=majority",
-
-    "TWILIO_ACCOUNT_SID": "ACbef8ac55552d8779a799ed439060bc2d",
-    "TWILIO_AUTH_TOKEN": "396cb4c22b4f1a3ca3de72cd44d17b21",
-
-    "MANAGER_EMAIL": "abwaheed.ahmed@gmail.com",
-    "MANAGER_EMAIL_PASSWORD": "ycyk cefj ifct vulp"
-  },
   "builds": [
     {
-      "src": "dist/main.js",
+      "src": "dist/main.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/main.js",
+      "dest": "dist/main.ts",
       "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"]
     }
   ]

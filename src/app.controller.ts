@@ -9,4 +9,10 @@ export class AppController {
   getHello(): any {
     return this.appService.getHello();
   }
+
+  // testing route
+  @Get('test')
+  testRoute(): string {
+    return 'This is a test route!';
+  }
 }
